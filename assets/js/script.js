@@ -107,8 +107,11 @@ if (contactForm) {
     contactForm.addEventListener('submit', async function (e) {
         e.preventDefault();
 
-        const btn = document.getElementById('submitBtn');
-        const btnText = btn;
+        const btn = document.querySelector('button[type="submit"]');
+
+if (!btn) return;
+
+const btnText = btn;
         const msgDiv = document.getElementById('formMessage');
 
         btn.disabled = true;
