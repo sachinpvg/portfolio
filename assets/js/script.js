@@ -102,46 +102,53 @@ function initAnimations() {
 
 // 5. Form Handling
 const contactForm = document.getElementById('contactForm');
+
 if (contactForm) {
-    contactForm.addEventListener('submit', function (e) {
+    contactForm.addEventListener('submit', async function (e) {
         e.preventDefault();
 
         const btn = document.getElementById('submitBtn');
         const btnText = btn.querySelector('.btn-text');
         const msgDiv = document.getElementById('formMessage');
 
-        const formData = new FormData(this);
-
         btn.disabled = true;
         btnText.innerHTML = 'Sending... <i class="fa-solid fa-spinner fa-spin ms-2"></i>';
 
-        fetch('contact.php', {
-            method: 'POST',
-            body: formData
-        })
-            .then(response => response.json())
-            .then(data => {
-                msgDiv.classList.remove('d-none', 'alert-danger', 'alert-success');
-                if (data.success) {
-                    msgDiv.classList.add('alert-success');
-                    msgDiv.innerHTML = '<i class="fa-solid fa-check-circle me-2"></i>' + data.message;
-                    contactForm.reset();
-                } else {
-                    msgDiv.classList.add('alert-danger');
-                    msgDiv.innerHTML = '<i class="fa-solid fa-triangle-exclamation me-2"></i>' + data.message;
+        const formData = new FormData(contactForm);
+
+        try {
+            const response = await fetch('https://formspree.io/f/mykayqea', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
                 }
-            })
-            .catch(error => {
-                msgDiv.classList.remove('d-none', 'alert-success');
-                msgDiv.classList.add('alert-danger');
-                msgDiv.innerHTML = '<i class="fa-solid fa-triangle-exclamation me-2"></i>An error occurred. Please try again.';
-            })
-            .finally(() => {
-                btn.disabled = false;
-                btnText.innerHTML = 'Send Message <i class="fa-solid fa-paper-plane ms-2"></i>';
-                setTimeout(() => {
-                    msgDiv.classList.add('d-none');
-                }, 5000);
             });
+
+            msgDiv.classList.remove('d-none', 'alert-danger', 'alert-success');
+
+            if (response.ok) {
+                msgDiv.classList.add('alert-success');
+                msgDiv.innerHTML =
+                    '<i class="fa-solid fa-check-circle me-2"></i>Thank you! Your message has been sent successfully.';
+                contactForm.reset();
+            } else {
+                msgDiv.classList.add('alert-danger');
+                msgDiv.innerHTML =
+                    '<i class="fa-solid fa-triangle-exclamation me-2"></i>Failed to send message. Please try again.';
+            }
+        } catch (error) {
+            msgDiv.classList.remove('d-none', 'alert-success');
+            msgDiv.classList.add('alert-danger');
+            msgDiv.innerHTML =
+                '<i class="fa-solid fa-triangle-exclamation me-2"></i>An error occurred. Please try again.';
+        } finally {
+            btn.disabled = false;
+            btnText.innerHTML = 'Send Message <i class="fa-solid fa-paper-plane ms-2"></i>';
+
+            setTimeout(() => {
+                msgDiv.classList.add('d-none');
+            }, 5000);
+        }
     });
 }

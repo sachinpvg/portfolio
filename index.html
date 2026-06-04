@@ -395,42 +395,51 @@
                 <div class="col-lg-8">
                     <div class="contact-wrapper glass-card p-5 outline-accent tilt-card" data-tilt data-tilt-max="3"
                         data-tilt-glare data-tilt-max-glare="0.1">
-                        <form id="contactForm" class="contact-form">
-                            <div class="row">
-                                <div class="col-md-6 mb-4">
-                                    <div class="form-floating input-glass">
-                                        <input type="text" class="form-control glass-input" id="name" name="name"
-                                            placeholder="Name" required>
-                                        <label for="name">Your Name</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 mb-4">
-                                    <div class="form-floating input-glass">
-                                        <input type="email" class="form-control glass-input" id="email" name="email"
-                                            placeholder="Email" required>
-                                        <label for="email">Your Email</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-floating input-glass mb-4">
-                                <input type="text" class="form-control glass-input" id="subject" name="subject"
-                                    placeholder="Subject" required>
-                                <label for="subject">Subject</label>
-                            </div>
-                            <div class="form-floating input-glass mb-4">
-                                <textarea class="form-control glass-input" placeholder="Message" id="message"
-                                    name="message" style="height: 180px" required></textarea>
-                                <label for="message">Your Message</label>
-                            </div>
-                            <div class="text-center mt-5">
-                                <button type="submit" class="btn btn-primary custom-btn btn-lg w-100 fs-5 fw-bold"
-                                    id="submitBtn">
-                                    <span class="btn-text">Send Message</span>
-                                    <i class="fa-solid fa-paper-plane ms-2"></i>
-                                </button>
-                            </div>
-                            <div id="formMessage" class="mt-4 text-center d-none alert fw-bold"></div>
-                        </form>
+                        <form id="contactForm" class="contact-form" action="https://formspree.io/f/mykayqea" method="POST">
+
+```
+<div class="row">
+    <div class="col-md-6 mb-4">
+        <div class="form-floating input-glass">
+            <input type="text" class="form-control glass-input" id="name" name="name"
+                placeholder="Name" required>
+            <label for="name">Your Name</label>
+        </div>
+    </div>
+
+    <div class="col-md-6 mb-4">
+        <div class="form-floating input-glass">
+            <input type="email" class="form-control glass-input" id="email" name="email"
+                placeholder="Email" required>
+            <label for="email">Your Email</label>
+        </div>
+    </div>
+</div>
+
+<div class="form-floating input-glass mb-4">
+    <input type="text" class="form-control glass-input" id="subject" name="subject"
+        placeholder="Subject" required>
+    <label for="subject">Subject</label>
+</div>
+
+<div class="form-floating input-glass mb-4">
+    <textarea class="form-control glass-input" placeholder="Message" id="message"
+        name="message" style="height: 180px" required></textarea>
+    <label for="message">Your Message</label>
+</div>
+
+<div class="text-center mt-5">
+    <button type="submit" class="btn btn-primary custom-btn btn-lg w-100 fs-5 fw-bold">
+        <span class="btn-text">Send Message</span>
+        <i class="fa-solid fa-paper-plane ms-2"></i>
+    </button>
+</div>
+
+<div id="formMessage" class="mt-4 text-center d-none alert fw-bold"></div>
+```
+
+</form>
+
                     </div>
                 </div>
             </div>
