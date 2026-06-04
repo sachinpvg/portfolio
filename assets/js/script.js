@@ -108,7 +108,7 @@ if (contactForm) {
         e.preventDefault();
 
         const btn = document.getElementById('submitBtn');
-        const btnText = btn.querySelector('.btn-text');
+        const btnText = btn;
         const msgDiv = document.getElementById('formMessage');
 
         btn.disabled = true;
